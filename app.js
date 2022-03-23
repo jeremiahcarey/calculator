@@ -1,3 +1,6 @@
+const numBtns = document.querySelectorAll('.num-buttons');
+const allBtns = document.querySelectorAll('.buttons');
+
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -29,3 +32,14 @@ function operate(num1, num2, operator) {
     }
     return result;
 }
+
+function btnUp() {
+    allBtns.forEach(button => button.classList.remove('button-pressed'));;
+}
+
+numBtns.forEach(button => button.addEventListener('click', function (e) {
+    const btn = e.target;
+    btn.classList.add('button-pressed');
+    const unpress = setTimeout(btnUp, 75);
+}));
+
