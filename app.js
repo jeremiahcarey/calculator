@@ -43,10 +43,14 @@ function operate(num1, num2, operator) {
     } else if (operator === 'divide' && num2 !== 0) {
         result = divide(num1, num2);
     } else {
-        console.log('Error');
-    }
-    const displayResult = parseFloat(result.toFixed(3)).toString();
-    return displayResult;
+        return 'Error';
+    };
+    const displayResult = parseFloat(result.toFixed(2)).toString();
+    if (displayResult.length > 9) {
+        return 'Error';
+    } else {
+        return displayResult;
+    };
 };
 
 
@@ -87,14 +91,14 @@ operatorBtns.forEach(button => button.addEventListener('click', function (e) {
 }));
 
 numBtns.forEach(button => button.addEventListener('click', function (e) {
-    if (newDisplay === true) {
+    if (newDisplay === true || displayValue === '0') {
         displayValue = e.target.innerText;
         updateDisplay();
         newDisplay = false;
-        // not sure if I need the below
-    } else if (displayValue === '0') {
-        displayValue = e.target.innerText;
-        updateDisplay();
+        //     // not sure if I need the
+        // } else if (displayValue === '0') {
+        //     displayValue = e.target.innerText;
+        //     updateDisplay();
     } else if (displayValue.length <= 9) {
         displayValue += e.target.innerText;
         updateDisplay();
@@ -141,7 +145,9 @@ delBtn.addEventListener('click', function () {
 
 
 equalsBtn.addEventListener('click', function () {
-    operatorPressed = false;
-    startOperate();
-})
+    if (operatorPressed === true) {
+        operatorPressed = false;
+        startOperate();
+    }
+});
 
