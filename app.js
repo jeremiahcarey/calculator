@@ -95,10 +95,6 @@ numBtns.forEach(button => button.addEventListener('click', function (e) {
         displayValue = e.target.innerText;
         updateDisplay();
         newDisplay = false;
-        //     // not sure if I need the
-        // } else if (displayValue === '0') {
-        //     displayValue = e.target.innerText;
-        //     updateDisplay();
     } else if (displayValue.length <= 9) {
         displayValue += e.target.innerText;
         updateDisplay();
