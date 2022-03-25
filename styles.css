@@ -59,7 +59,12 @@ body {
     font-size: 30px;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
+}
+
+#display-operator {
+    font-size: 12px;
+    align-self: flex-start;
 }
 
 .buttons {

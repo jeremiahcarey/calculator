@@ -7,6 +7,7 @@ const delBtn = document.querySelector('#del-btn');
 const decBtn = document.querySelector('#decimal');
 const operatorBtns = document.querySelectorAll('.operator-btns');
 const equalsBtn = document.querySelector('#equals');
+const opDisplay = document.querySelector('#display-operator');
 
 let displayValue = '0';
 let currentOperator;
@@ -75,18 +76,22 @@ operatorBtns.forEach(button => button.addEventListener('click', function (e) {
         currentOperator = 'divide';
         operatorPressed = true;
         newDisplay = true;
+        opDisplay.innerText = '÷';
     } else if (e.target.id === 'multiply-btn') {
         currentOperator = 'multiply';
         operatorPressed = true;
         newDisplay = true;
+        opDisplay.innerText = 'x';
     } else if (e.target.id === 'minus-btn') {
         currentOperator = 'subtract';
         operatorPressed = true;
         newDisplay = true;
+        opDisplay.innerText = '-';
     } else if (e.target.id === 'plus-btn') {
         currentOperator = 'add';
         operatorPressed = true;
         newDisplay = true;
+        opDisplay.innerText = '+';
     }
 }));
 
@@ -125,6 +130,7 @@ clearBtn.addEventListener('click', function () {
     updateDisplay();
     num1 = '0';
     num2 = '0';
+    opDisplay.innerText = '';
 });
 
 delBtn.addEventListener('click', function () {
@@ -144,6 +150,7 @@ equalsBtn.addEventListener('click', function () {
     if (operatorPressed === true) {
         operatorPressed = false;
         startOperate();
+        opDisplay.innerText = '';
     }
 });
 
@@ -170,18 +177,22 @@ document.addEventListener('keydown', function (e) {
             currentOperator = 'add';
             operatorPressed = true;
             newDisplay = true;
+            opDisplay.innerText = '+';
         } else if (e.key === '-') {
             currentOperator = 'subtract';
             operatorPressed = true;
             newDisplay = true;
+            opDisplay.innerText = '-';
         } else if (e.key === '/') {
             currentOperator = 'divide';
             operatorPressed = true;
             newDisplay = true;
+            opDisplay.innerText = '÷';
         } else if (e.key === '*') {
             currentOperator = 'multiply';
             operatorPressed = true;
             newDisplay = true;
+            opDisplay.innerText = 'x';
         };
     } else if (e.key === '.') {
         if (newDisplay === false && !displayValue.includes('.')) {
@@ -202,6 +213,7 @@ document.addEventListener('keydown', function (e) {
         if (operatorPressed === true) {
             operatorPressed = false;
             startOperate();
+            opDisplay.innerText = '';
         }
     };
 });
