@@ -147,3 +147,61 @@ equalsBtn.addEventListener('click', function () {
     }
 });
 
+// keyboard support for basic functions
+
+document.addEventListener('keydown', function (e) {
+    const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const operators = ['-', '+', '*', '/'];
+    if (nums.includes(e.key)) {
+        if (newDisplay === true || displayValue === '0') {
+            displayValue = e.key;
+            updateDisplay();
+            newDisplay = false;
+        } else if (displayValue.length <= 9) {
+            displayValue += e.key;
+            updateDisplay();
+        };
+    } else if (operators.includes(e.key)) {
+        if (operatorPressed === true) {
+            startOperate();
+        }
+        num1 = parseFloat(displayValue);
+        if (e.key === '+') {
+            currentOperator = 'add';
+            operatorPressed = true;
+            newDisplay = true;
+        } else if (e.key === '-') {
+            currentOperator = 'subtract';
+            operatorPressed = true;
+            newDisplay = true;
+        } else if (e.key === '/') {
+            currentOperator = 'divide';
+            operatorPressed = true;
+            newDisplay = true;
+        } else if (e.key === '*') {
+            currentOperator = 'multiply';
+            operatorPressed = true;
+            newDisplay = true;
+        };
+    } else if (e.key === '.') {
+        if (newDisplay === false && !displayValue.includes('.')) {
+            displayValue += '.';
+            updateDisplay();
+        };
+    } else if (e.key === 'Backspace') {
+        if (newDisplay === true) {
+            return;
+        } else if (displayValue !== '0' && displayValue.length > 1) {
+            displayValue = displayValue.slice(0, -1);
+            updateDisplay();
+        } else if (displayValue !== '0' && displayValue.length === 1) {
+            displayValue = '0';
+            updateDisplay();
+        }
+    } else if (e.key === '=') {
+        if (operatorPressed === true) {
+            operatorPressed = false;
+            startOperate();
+        }
+    };
+});
