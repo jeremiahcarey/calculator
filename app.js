@@ -154,7 +154,7 @@ equalsBtn.addEventListener('click', function () {
     }
 });
 
-// keyboard support for basic functions
+// keyboard support added
 
 document.addEventListener('keydown', function (e) {
     const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
